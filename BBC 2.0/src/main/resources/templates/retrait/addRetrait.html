@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>BBC - Retrait</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="text-center">
+			<div class="container-fluid">
+	        	<div class="row">
+	        		<div class="col-10 offset-1">
+	        			<div class="alert alert-success h5 font-weight-bold font-italic" th:if="${alertRetrait != null}">
+	        				Nouveau retrait " <span th:text="${alertRetrait}"></span> " effectué avec succès !!!
+	        			</div>
+		            	<div class="card">
+		                	<div class="card-header bg-dark text-light h3 text-center font-weight-bold">
+		                		Enrégistrer un rétrait
+		                	</div>
+		                	<div class="card-body text-center">
+		                		<form th:action="@{/retrait/saveRetrait}" id="form" method="POST" th:object="${client}">
+									<div class="from-group row">
+										<div class="col-12 col-lg-6 mt-3 mt-lg-0">
+											<div class="row">
+												<label for="idProduit" class="col-form-label col-4 col-md-3 font-weight-bold text-right">Type :</label>
+												<select required name="idProduit" id="idProduit" class="form-control col-8 colorful-select dropdown-info">
+												  <option value="" disabled selected>--Sélectionner--</option>
+												  <option th:each="p:${produits}" th:value="${p.idProduit}" th:text="${p.libelleProduit}"></option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="col-12 col-lg-6 mt-3 mt-lg-0">
+											<div class="row">
+												<label for="phone" class="col-form-label col-4 col-md-3 font-weight-bold text-right">Téléphone:</label>
+											    <input type="text" required th:field="*{phone}" class="form-control col-8 col-lg-8"/>
+											</div>
+										</div>
+									</div><br/>
+									
+									<div class="from-group row">
+										<div class="col-12 col-lg-6 mt-3 mt-lg-0">
+											<div class="row">
+												<label for="idPiece" class="col-form-label col-4 col-md-3 font-weight-bold text-right">Pièce :</label>
+												<select required name="idPiece" id="idPiece" class="form-control col-8 colorful-select dropdown-info">
+												  <option value="" disabled selected>--Sélectionner--</option>
+												  <option th:each="p:${pieces}" th:value="${p.idPiece}" th:text="${p.libellePiece}"></option>
+												</select>
+											</div>
+										</div>
+								      
+								      	<div class="col-12 col-lg-6 mt-3 mt-lg-0">
+											<div class="row">
+												<label for="reference" class="col-form-label col-4 col-md-3 font-weight-bold text-right">Référence :</label>
+								      			<input type="text" required name="reference" id="reference" class="form-control col-8 col-lg-8"/>
+											</div>
+										</div>
+									</div><br/>
+									
+									<div class="from-group row">
+										<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="montant" class="col-form-label col-4 col-md-3 font-weight-bold text-right">Montant :</label>
+											    <input type="number" min="0" required name="montant" id="montant" class="form-control col-8 col-lg-8"/>
+											</div>
+										</div>
+										
+										<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="date" class="col-form-label col-4 col-md-3 font-weight-bold text-right">Date :</label>
+											    <input type="date" required name="date" id="date" class="form-control col-8 col-lg-8"/>
+											</div>
+										</div>
+									</div><br/>
+									
+									<div class="form-group row">
+							        	<button class="btn bg-gradient-perso form-control col-4 col-lg-2 offset-4 text-light font-weight-bold" type="submit"><i
+							            class="fa fa-check-circle mr-2"></i>VALIDER
+							            </button>
+							      	</div>
+								</form>
+		                	</div>
+		                </div>
+	                </div>
+	            </div>
+	         </div>
+		</div>
+	</body>
+</html>

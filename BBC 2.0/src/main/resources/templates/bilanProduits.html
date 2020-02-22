@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>BBC - Bilan des produits</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="text-center">
+			<div class="container-fluid mt-5">
+	        	<div class="row">
+	        		<div class="col-12 mt-4">
+		            	<div class="card mx-5">
+		                	<div class="card-header bg-dark text-light h2 text-center font-weight-bold">
+		                		Bilan des produits
+		                	</div>
+		                	<div class="card-body text-center">
+		                		<!-- Modifier le montant d'un produit 
+		                		<button class="btn btn-warning font-weight-bold text-light mb-1" data-toggle="modal" data-target="#myModal">
+		                			Aouter un nouveau produit
+		                		</button>
+		                		-->
+		                		<div class="modal" id="myModal">
+		                			<div class="modal-dialog">
+		                				<div class="modal-content">
+		                					<div class="modal-header">
+		                						<h1 class="h4 modal-title">Aouter un nouveau produit</h1>
+		                						<button class="close" type="button" data-dismiss="modal">
+		                							<span>&times;</span>
+		                						</button>
+		                					</div>
+		                					
+		                					<div class="modal-body mx-2">
+		                						<form th:action="@{/depot/saveNewProduit}" method=POST>
+		                							<div class="from-group row">
+		                								<label for="typeOp" class="col-form-label col-4 font-weight-bold text-right">Opération :</label>
+														<select name="typeOp" id="typeOp" required class="form-control col-8 colorful-select dropdown-info">
+														  <option value="" disabled selected>--Sélectionner--</option>
+														  <option value="1">Dépôt-Retrait-Recharge</option>
+														  <option value="2">Recharge uniquement</option>
+														 </select>
+													</div>
+													
+													<div class="from-group row mt-2">
+														<label for="libelle" class="col-form-label col-4 font-weight-bold text-right">NomProduit :</label>
+											    		<input type="text" required name="libelle" id="libelle" class="form-control col-8" min="0"/>
+													</div>
+													
+													<div class="form-group row mt-2">
+											        	<button class="btn bg-gradient-perso form-control col-4 offset-4 text-light font-weight-bold" type="submit"><i
+											            class="fa fa-check-circle mr-2"></i>VALIDER
+											            </button>
+											      	</div>
+		                						</form>
+		                					</div>
+		                				</div>
+		                			</div>
+		                		</div>
+		                		
+		                		<!-- Liste des produits -->
+		                		<table class="table table-bordered table-hover">
+									<thead>
+										<tr class="bg-dark text-light text-uppercase font-weight-bold">
+											<th>N°</th><th>Produit</th>
+										</tr>
+									</thead>
+									<tbody class="bg-white font-weight-bold">
+										<tr th:each="p,temp :${produits}">
+											<td th:text="${temp.index + 1}"></td>
+											<td th:text="${p.libelleProduit}"></td>
+										<tr>
+									</tbody>
+								</table>
+		                	</div>
+		                </div>
+	                </div>
+	            </div>
+	         </div>
+		</div>
+	</body>
+</html>

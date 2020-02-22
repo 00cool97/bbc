@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>BBC - Depot</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	</head>
+	<body>
+		<div layout:fragment="content" class="text-center">
+			<div class="container-fluid">
+	        	<div class="row">
+	        		<div class="col-12">
+		            	<div class="card">
+		                	<div class="card-header bg-dark text-light h3 text-center font-weight-bold">
+		                		<span th:if="${transaction.idOperation.libelleOperation == 'DEPOT'}">
+		                			Détail d'un dépot
+		                		</span>
+		                		
+		                		<span th:if="${transaction.idOperation.libelleOperation == 'RECHARGE'}">
+		                			Détail d'une recharge
+		                		</span>
+		                		
+		                	</div>
+		                	<div class="card-body text-center h6">
+		                		<div class="from-group row">
+									<div class="col-12 mt-3">
+										<div class="row">
+											<label class="col-form-label col-1 font-weight-bold text-right">CLIENT :</label>
+											<input disabled th:value="${transaction.idClient.nom}" class="form-control font-weight-bold col-2 mr-1"/>
+											<input disabled th:value="${transaction.idClient.prenom}" class="form-control font-weight-bold col-3 mr-1"/>
+											<input disabled th:value="${transaction.idClient.phone}" class="form-control font-weight-bold col-2 mr-1"/>
+											
+											<label class="col-form-label col-1 font-weight-bold text-right ml-2">PRODUIT :</label>
+											<input disabled th:value="${transaction.idProduit.libelleProduit}" class="form-control font-weight-bold col-2 mr-1"/>
+										</div>
+									</div>
+									
+									<div class="col-12 mt-3">
+										<div class="row">
+											<label class="col-form-label col-1 font-weight-bold text-right">MONT :</label>
+											<input disabled th:value="${transaction.montantTrans}" class="form-control font-weight-bold col-2 mr-1"/>
+											
+											<label class="col-form-label col-2 font-weight-bold text-right">Reste à payer :</label>
+											<input disabled th:value="${transaction.montantRest}" class="form-control font-weight-bold col-2 mr-1"/>
+											
+											<label class="col-form-label col-2 font-weight-bold text-right ml-3">Date :</label>
+											<input disabled th:value="${transaction.dateTrans}" class="form-control font-weight-bold col-2 mr-1"/>
+										</div>
+									</div>
+									
+									<div class="col-12 mt-4">
+										<span class="text-left text-uppercase">Etat des paiements</span>
+										<table class="table table-bordered table-hover">
+											<thead>
+												<tr class="bg-dark text-light text-uppercase font-weight-bold">
+													<th>N°</th><th>Date</th><th>Montant payé</th><th>Reste à payer</th>
+												</tr>
+											</thead>
+											<tbody class="bg-white font-weight-bold">
+												<tr th:each="p,temp :${paiements}">
+													<td th:text="${temp.index + 1}"></td>
+													<td th:text="${p.datePaie}"></td>
+													<td th:text="${p.montantPaie}"></td>
+													<td th:text="${p.montantRest}"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+		                	</div>
+		                </div>
+	                </div>
+	            </div>
+	         </div>
+		</div>
+	</body>
+</html>

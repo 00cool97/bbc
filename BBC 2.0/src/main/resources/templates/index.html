@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>BBC - Home</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="text-center">
+			<div class="container-fluid mt-2">
+	        	<div class="row">
+	        		<div class="col-12">
+		            	<div class="card mx-5">
+		                	<div class="card-header bg-dark text-light h2 text-center font-weight-bold">
+		                		<i class="fa fa-home mr-2"></i>Bienvenue
+		                	</div>
+		                	<div class="card-body text-center">
+		                		<img alt="Centre MURAZ" th:src="@{/images/budget.jpg}"
+		                		 class="img-fluid rounded"
+		                		 width="650px"/>
+		                	</div>
+		                </div>
+	                </div>
+	            </div>
+	         </div>
+		</div>
+	</body>
+</html>

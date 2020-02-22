@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>BBC - Mon profil</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="text-center">
+			<div class="container-fluid">
+	        	<div class="row">
+	        		<div class="col-6 offset-3">
+		            	<div class="card">
+		                	<div class="card-header bg-dark text-light h3 text-center font-weight-bold">
+		                		Mon profil
+		                	</div>
+		                	<div class="card-body text-center h6">
+		                		<div class="from-group row">
+		                			<div class="col-12 row mb-3">
+										<label class="col-form-label col-4 font-weight-bold text-right">Nom :</label>
+										<input disabled th:value="${user.nom}" class="form-control font-weight-bold col-6"/>
+									</div>
+									
+									<div class="col-12 row mb-3">
+										<label class="col-form-label col-4 font-weight-bold text-right">Prénom(s) :</label>
+										<input disabled th:value="${user.prenom}" class="form-control font-weight-bold col-6"/>
+									</div>
+									
+									<div class="col-12 row mb-3">
+										<label class="col-form-label col-4 font-weight-bold text-right">Téléphone :</label>
+										<input disabled th:value="${user.phone}" class="form-control font-weight-bold col-6"/>
+									</div>
+									
+									<div class="col-12 row mb-3">
+										<label class="col-form-label col-4 font-weight-bold text-right">Nom d'utilisateur :</label>
+										<input disabled th:value="${user.username}" class="form-control font-weight-bold col-6"/>
+									</div>
+									
+									<div class="col-12 row mb-3">
+										<button  class="btn btn-warning font-weight-bold text-light col-6 offset-4 h3" 
+												 data-toggle="modal" 
+												 data-target="#myModal">
+											<i class="fa fa-edit"></i> Modifier le mot de passe
+										</button>
+									</div>
+								</div>
+								
+								<div class="modal" id="myModal">
+		                			<div class="modal-dialog">
+		                				<div class="modal-content">
+		                					<div class="modal-header">
+		                						<h1 class="h4 modal-title text-center font-weight-bold">Modifier son mot de passe</h1>
+		                						<button class="close" type="button" data-dismiss="modal">
+		                							<span>&times;</span>
+		                						</button>
+		                					</div>
+		                					
+		                					<div class="modal-body mx-2">
+		                						<form th:action="@{/user/updateUser}" id="editPassword" method=POST>
+		                							<div class="from-group row">
+		                								<label for="oldMdp" class="col-form-label col-4 font-weight-bold text-right">Ancien mdp:</label>
+														<input type="password" required name="oldMdp" id="oldMdp" class="form-control col-8" min="0"/>
+														<input type="hidden" name="username" th:value="${user.username}"/>
+													</div>
+													
+													<div class="from-group row mt-2">
+														<label for="newMdp" class="col-form-label col-4 font-weight-bold text-right">Nouveau mdp:</label>
+											    		<input type="password" required name="newMdp" id="newMdp" class="form-control col-8" min="0"/>
+													</div>
+													
+													<div class="form-group row mt-2">
+											        	<button id="btnEditPassword" class="btn bg-gradient-perso form-control col-4 offset-4 text-light font-weight-bold" type="submit"><i
+											            class="fa fa-check-circle mr-2"></i>VALIDER
+											            </button>
+											      	</div>
+		                						</form>
+		                					</div>
+		                				</div>
+		                			</div>
+		                		</div>
+		                	</div>
+		                </div>
+	                </div>
+	            </div>
+	         </div>
+	         <!-- Files JS -->
+	         <script src="/webjars/jquery/jquery.min.js" 
+  					 th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>
+  			 <script src="/js/userValidation.js" 
+  					th:src="@{/js/userValidation.js}" type="text/javascript"></script>
+		</div>
+	</body>
+</html>

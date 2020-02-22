@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link href="../static/images/logo.png" th:href="@{images/logo.png}" rel="icon"/>
+  <title>BBC</title>
+  
+  <link href="/webjars/bootstrap/css/bootstrap.min.css"
+  		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+  <link href="/webjars/font-awesome/css/font-awesome.min.css"
+  		th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    
+  <link href="../static/css/style.css"
+  		th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+  
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-perso sidebar sidebar-light accordion" id="accordionSidebar">
+    	<li class="nav-item disabled active mb-1">
+        	<a class="nav-link text-light font-weight-bold" href="#">
+          		<img th:src="@{/images/logo.png}" class="img-fluid" width="150px"/>
+			</a>
+      	</li>
+		<hr class="sidebar-divider my-0">
+	  <li class="nav-item">
+        <a class="nav-link font-weight-bold text-light" th:href="@{/}">
+          <i class="fa fa-home h1 text-light"></i>
+          <span class="text-uppercase">Accueil</span> 
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold text-light" th:href="@{/depot/addDepot}">
+          <i class="fa fa-arrow-down h1 text-light"></i>
+          <span class="text-uppercase">Dépôt</span> 
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold text-light" th:href="@{/retrait/addRetrait}" href="/retrait/addRetrait">
+          <i class="fa fa-arrow-up h1 text-light"></i>
+          <span class="text-uppercase">Retrait</span> 
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold text-light" th:href="@{/recharge/addRecharge}">
+          <i class="fa fa-compress h1 text-light"></i>
+          <span class="text-uppercase">Recharge</span> 
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold text-light" th:href="@{/canal/addAbonnement}">
+          <i class="fa fa-wifi h1 text-light"></i>
+          <span class="text-uppercase">Canal</span> 
+        </a>
+      </li>
+      
+      <li class="nav-item mt-2" th:if="${userGroup == 'ADMIN'}">
+      	<a class="nav-link collapsed font-weight-bold text-light" href="#" data-toggle="collapse" data-target="#Prêt"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fa fa-money h1 text-light"></i>
+         	<span class="text-uppercase">Prêt</span>
+        </a>
+        <div id="Prêt" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item font-weight-bold" th:href="@{/pret/addPret}">
+            	<i class="fa fa-plus-circle mr-2"></i>Nouveau prêt
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/pret/bilanPrets}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan des prêts
+            </a>
+          </div>
+        </div>
+      </li>
+      
+      <li class="nav-item mt-2" th:if="${userGroup == 'ADMIN'}">
+      	<a class="nav-link collapsed font-weight-bold text-light" href="#" data-toggle="collapse" data-target="#placement"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fa fa-bank h1 text-light"></i>
+         	<span class="text-uppercase">Placement</span>
+        </a>
+        <div id="placement" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item font-weight-bold" th:href="@{/placement/addPlacement}">
+            	<i class="fa fa-plus-circle mr-2"></i>Nouveau placement
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/placement/retraitPlacement}">
+            	<i class="fa fa-list-alt mr-2"></i>Retirer placement
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/placement/bilanPlacements}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan des placements
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/placement/totalPlacements}">
+            	<i class="fa fa-list-alt mr-2"></i>Placements en détail
+            </a>
+          </div>
+        </div>
+      </li>
+      
+      <li class="nav-item mt-2" th:if="${userGroup == 'ADMIN'}">
+      	<a class="nav-link collapsed font-weight-bold text-light" href="#" data-toggle="collapse" data-target="#credit"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fa fa-money h1 text-light"></i>
+         	<span class="text-uppercase">Crédit</span>
+        </a>
+        <div id="credit" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item font-weight-bold" th:href="@{/credit/listeCredits}">
+            	<i class="fa fa-plus-circle mr-2"></i>Payer un crédit
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/credit/bilanCredits}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan des crédits
+            </a>
+          </div>
+        </div>
+      </li>
+      
+      <li class="nav-item">
+      	<a class="nav-link collapsed font-weight-bold text-light" href="#" data-toggle="collapse" data-target="#bilan"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fa fa-list-alt h1 text-light"></i>
+         	<span class="text-uppercase">Bilan</span>
+        </a>
+        <div id="bilan" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item font-weight-bold" th:href="@{/depot/bilanDepots}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan-Dépôts
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/retrait/bilanRetraits}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan-Rétraits
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/recharge/bilanRecharge}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan-Recharges
+            </a>
+            <a class="collapse-item font-weight-bold" th:href="@{/canal/bilanAbonnements}">
+            	<i class="fa fa-list-alt mr-2"></i>Bilan-Abonnements
+            </a>
+          </div>
+        </div>
+      </li>
+      
+      <li class="nav-item" th:if="${userGroup == 'ADMIN'}">
+      	<a class="nav-link collapsed font-weight-bold text-light" href="#" data-toggle="collapse" data-target="#parametre"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fa fa-gears h1 text-light"></i>
+         	<span class="text-uppercase">Paramètres</span>
+        </a>
+        <div id="parametre" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+          	<a class="collapse-item font-weight-bold" th:href="@{/user/addUser}">
+            	<i class="fa fa-user-plus mr-2"></i>Nouvel utilisateur
+            </a>
+            
+            <a class="collapse-item font-weight-bold" th:href="@{/user/showUser}">
+            	<i class="fa fa-user mr-2"></i>Mon Profil
+            </a>
+            
+            <a class="collapse-item font-weight-bold" th:href="@{/user/listeUsers}">
+            	<i class="fa fa-users mr-2"></i>Utilisateurs
+            </a>
+            
+            <a class="collapse-item font-weight-bold" th:href="@{/bilanProduits}">
+            	<i class="fa fa-users mr-2"></i>Bilan des produits
+            </a>
+          </div>
+        </div>
+      </li>
+      
+    </ul>
+    <!-- Sidebar -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <!-- TopBar -->
+        <nav class="navbar bg-dark navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn text-light btn-link rounded-circle mr-5">
+            <i class="fa fa-bars"></i>
+          </button>
+          
+          <ul class="navbar-nav ml-auto">
+            
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-fluid rounded-circle" th:src="@{/images/login.jpg}" style="max-width: 50px">
+                <span class="ml-2 d-none font-weight-bold d-lg-inline small" th:text="${connectedUser}"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              	<div class="row">
+              		<div class="col-12 text-center">
+              			<img class="img-fluid rounded-circle" th:src="@{/images/login.jpg}" style="max-width: 100px">
+              		</div>
+              		<div class="col-12 text-center font-weight-bold">
+              			<span  th:text="${connectedUser}"></span>
+              		</div>
+              	</div>
+                <a class="dropdown-item bg-danger text-light font-weight-bold" th:href="@{/login?logout}">
+		        	<i class="fa fa-sign-out mr-1 text-gray-400"></i>
+		             Déconnexion
+		        </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- Topbar -->
+
+        <!-- Container Fluid-->
+        <div layout:fragment="content">
+	                	
+	     </div>
+    </div>
+    <!-- Footer -->
+    <footer class="align-content-md-end footer-copyright mt-5 sticky-footer bg-white">
+        <div class="container font-weigth-bold mt-5 my-auto">
+          <div class="font-weight-bold text-center  my-auto">
+            <span class="">&copy;2020 Tous droits reservés | BBC v1.0
+            </span>
+          </div>
+        </div>
+      </footer>
+  </div>
+  
+</div>
+  <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+  </a>
+
+	<!-- Files JS -->
+	<script src="/webjars/jquery/jquery.min.js" 
+  			th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>
+  			
+  	<script src="/webjars/popper.js/popper.min.js" 
+  			th:src="@{/webjars/popper.js/popper.min.js}" type="text/javascript"></script>
+  	
+  	<script src="/webjars/bootstrap/js/bootstrap.min.js"
+  			th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+  	
+  	<script src="/js/script.js" 
+  			th:src="@{/js/script.js}" type="text/javascript"></script>
+</body>
+
+</html>

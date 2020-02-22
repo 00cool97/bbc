@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>BBC - Utilisateurs</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header font-weight-bold text-center bg-dark text-light h4">
+						Liste des utilisateurs
+					</div>
+					<div class="card-body text-center">
+						<div th:if="${users != null}" class="col-12 font-weight-bold text-center mt-2">
+								<table class="table table-bordered table-hover">
+									<tr class="bg-dark text-uppercase text-light font-weight-bold">
+										<th>#</th><th>Nom d'utilisateur</th><th>Nom</th><th>Prénom(s)</th><th>Téléphone</th>
+										
+									</tr>
+									<tr th:each="u,temp :${users}" class="bg-white">
+										<td th:text="${temp.index + 1}"></td>
+										<td th:text="${u.username}"></td>
+										<td th:text="${u.nom}"></td>
+										<td th:text="${u.prenom}"></td>
+										<td th:text="${u.phone}"></td>
+									</tr>
+								</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

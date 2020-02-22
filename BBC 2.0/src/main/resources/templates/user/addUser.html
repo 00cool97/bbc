@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<link href="../static/images/logo.png" th:href="@{images/logo.png}" rel="icon"/>
+  		<title>BBC - Utilisateur</title>
+		
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="col-10 offset-1">
+				<div class="alert alert-success h5 font-weight-bold font-italic text-center" th:if="${alert != null}">
+	        				Nouvel utilisateur ajouté avec succès !!!
+	        	</div>
+						<div class="card">
+							<div class="card-header font-weight-bold text-center bg-dark text-light h4">
+								Ajout d'un nouvel utilisateur
+							</div>
+							<div class="card-body mx-3">
+								<form th:action="@{/user/saveUser}" method="POST" id="saveUser" th:object="${user}">
+									<div class="from-group row">
+										<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="nom" class="col-form-label col-4 font-weight-bold text-right">Nom :</label>
+											    <input type="text" required th:field="*{nom}" class="form-control col-8">
+											</div>
+										</div>
+								      
+								      	<div class="col-12 col-lg-6 mt-3 mt-lg-0">
+											<div class="row">
+												<label for="prenom" class="col-form-label col-4 font-weight-bold text-right">Prénom(s) :</label>
+								      			<input type="text" required th:field="*{prenom}" class="form-control col-8">
+											</div>
+										</div>
+									</div><br/>
+									
+									<div class="from-group row">
+										<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="phone" class="col-form-label col-4 font-weight-bold text-right">Téléphone :</label>
+											    <input type="text" required th:field="*{phone}" class="form-control col-8"/>
+											</div>
+										</div>
+										
+										<div class="col-12 col-lg-6 mt-3 mt-lg-0">
+											<div class="row">
+												<label for="idRole" class="col-form-label col-4 font-weight-bold text-right">Rôle :</label>
+												<select name="idRole" required class="form-control col-8 colorful-select dropdown-info">
+												  <option value="" disabled selected>--Sélectionner--</option>
+												  <option th:each="r:${roles}" th:value="${r.idRole}" th:text="${r.libelle}"></option>
+												</select>
+											</div>
+										</div>	
+									</div><br/>
+									
+									<div class="from-group row">
+										<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="username" class="col-form-label col-4 font-weight-bold text-right">Nom d'utilisateur :</label>
+											    <input type="text" required th:field="*{username}" class="form-control col-8" value=""/>
+											</div>
+										</div>
+									</div><br/>
+									
+									<div class="from-group row">
+										<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="password" class="col-form-label col-4 font-weight-bold text-right">Mot de passe:</label>
+											    <input type="password" required th:field="*{password}" class="form-control col-8"/>
+											</div>
+										</div>
+								      	
+								      	<div class="col-12 col-lg-6">
+											<div class="row">
+												<label for="password" class="col-form-label col-4 font-weight-bold text-right">Confirmez :</label>
+											    <input type="password" required id="password2" class="form-control col-8">
+											</div>
+										</div>
+									</div><br/>
+									
+									<div class="form-group row">
+							        	<button class="btn btn-warning text-light form-control col-4 offset-4 font-weight-bold" type="submit"><i
+							            class="fa fa-check-circle ml-2"></i>VALIDER
+							            </button>
+							      	</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- Files JS -->
+	         <script src="/webjars/jquery/jquery.min.js" 
+  					 th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>
+  			 <script src="/js/userValidation.js" 
+  					th:src="@{/js/userValidation.js}" type="text/javascript"></script>
+		</div>
+	</body>
+</html>

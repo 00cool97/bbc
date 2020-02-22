@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="../static/images/logo.png" th:href="@{images/logo.png}" rel="icon"/>
+  <title>BBC - Login</title>
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" 
+  		th:href="@{webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+  <link href="/webjars/font-awesome/css/font-awesome.min.css" 
+  		th:href="@{webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    
+  <link href="../static/css/style.css"
+  		th:href="@{css/style.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body class="bg-login">
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-7 mt-5 offset-2 border border-info rounded shadow-lg">
+				<div class="row">
+					<div class="col-5 bg-gradient-perso">
+						<img th:src="@{/images/logo.png}" style="max-height: 260px" class="img-fluid mt-2"/>
+						<hr class="bg-white"></hr>
+						<div class="text-white text-center">
+							<span class="h3 font-weight-bold">Bil</span><br/>
+							<span class="h3 font-weight-bold">Business</span><br/>
+							<span class="h3 font-weight-bold">Center</span><br/>
+							<span class="h3 font-weight-bold">(BBC)</span><br/><br/>
+							</span>
+						</div>
+					</div>
+					
+					<div class="col-7 bg-white text-center">
+						<span class="font-weight-bold text-dark">Connectez-vous à votre espace de travail</span>
+						<img class="img-fluid rounded-circle mt-2" src="../static/images/login.jpg" th:src="@{images/login.jpg}" />
+						<form th:action="@{/login}" method=POST class="mx-4">
+							<div class="form-group row mt-2">
+		    					<input type="text" name="username" required class="form-control col-12" id="username" placeholder="Nom d'utilisateur"/>
+		    					<label class="col-form-label col-12 text-right"><i class="fa fa-user text-right"></i></label>
+		    					
+		    				</div>
+		    				<div class="form-group row">
+		    					<input type="password" name="password" required class="form-control col-12" id="password" placeholder="Mot de passe"/>
+		    					<label class="col-form-label col-12 text-right"><i class="fa fa-lock text-right"></i></label>
+		    				</div>
+		    				
+		    				<div class="form-group font-weight-bold row">
+		    					<button type="submit"
+		    						   class="font-weight-bold text-light h3 form-control col-10 offset-1 btn bg-gradient-perso">
+		    						  <i class="fa fa-sign-in mr-2"></i>Connexion
+		    					</button>
+		    				</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	  <link href="../static/images/logo.png" th:href="@{images/logo.png}" rel="icon"/>
+	  <title>BBC - Error</title>
+	  
+	  <link href="/webjars/bootstrap/css/bootstrap.min.css"
+	  		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+	  <link href="/webjars/font-awesome/css/font-awesome.min.css"
+	  		th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+	    
+	  <link href="../static/css/style.css"
+	  		th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+	  
+	</head>
+	
+	<body id="page-top">
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header h4 text-danger font-weight-bold text-center">
+							Page introuvable
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3 h1 text-right text-warning">
+									<span class="fa fa-warning"></span>
+								</div>
+								
+								<div class="col-9 h3">
+									Désolé! Nous n'arrivons pas à retrouver la page demandée:
+									<ul>
+										<li>Vérifier que cette page existe</li>
+										<li>Vérifier l'URL saisi est correcte</li>
+										<li>Relancer peut-être l'application</li>
+									</ul>
+									
+									<a th:href="@{/}" class="btn btn-primary">
+										Retour à la page d'accueil
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
